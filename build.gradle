@@ -19,7 +19,7 @@ apply plugin: "maven"
 archivesBaseName = project.mod_name.replace(' ', '-').toLowerCase()
 group = "net.ndrei"
 
-version = "${project.minecraft_version}-${project.mod_version}"
+version = "${project.minecraft_version}-${project.bc_version}-${project.mod_version}"
 if (project.hasProperty('mod_suffix')) {
     version += "-${project.mod_suffix}"
 }
@@ -46,7 +46,7 @@ minecraft {
 
     replace '@MOD-ID@', project.mod_id
     replace '@MOD-NAME@', project.mod_name
-    replace '@MOD-VERSION@', project.mod_version
+    replace '@MOD-VERSION@', "${project.bc_version}-${project.mod_version}"
     replace '@MOD-MC-VERSION@', project.minecraft_version
     replace '@FORGELIN-VERSION@', project.forgelin_version
     replace '@FORGE-VERSION@', project.forge_version
