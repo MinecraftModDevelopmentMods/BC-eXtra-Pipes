@@ -20,8 +20,6 @@ class TeleportingPipeSenderBehaviour : PipeBehaviour {
                 val stack = ev.stack.copy()
                 ev.stack.count = 0 // empty stack
 
-                stack.tagCompound = (stack.tagCompound ?: NBTTagCompound())
-                    .also { it.setBoolean("just_spawned", true) }
                 targetFlow.insertItemsForce(stack, ev.from.opposite, ev.colour, 0.05)
             }
         }

@@ -11,7 +11,7 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
     private val teleportingPipes = mutableListOf<Pair<Int, BlockPos>>()
 
     override fun createBehaviour(pipe: IPipe) =
-        object: TeleportingPipeReceiverBehaviour(pipe) {
+        object : TeleportingPipeReceiverBehaviour(pipe) {
             private var ticked = false
 
             override fun onTick() {
@@ -27,7 +27,7 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
         }
 
     override fun loadBehaviour(pipe: IPipe, nbt: NBTTagCompound) =
-        object: TeleportingPipeReceiverBehaviour(pipe, nbt) {
+        object : TeleportingPipeReceiverBehaviour(pipe, nbt) {
             private var ticked = false
 
             override fun onTick() {
@@ -49,11 +49,13 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
     }
 
     fun findRandomPipe(/*filterWorld: World, filterPos: BlockPos, */colour: EnumDyeColor, forItems: Boolean) =
-        teleportingPipes.also { it.removeIf {
-            !DimensionManager.isDimensionRegistered(it.first) || DimensionManager.getWorld(it.first).let { world ->
-                !world.isBlockLoaded(it.second) || ((world.getTileEntity(it.second) as? IPipeHolder) == null)
+        teleportingPipes.also {
+            it.removeIf {
+                !DimensionManager.isDimensionRegistered(it.first) || DimensionManager.getWorld(it.first).let { world ->
+                    !world.isBlockLoaded(it.second) || ((world.getTileEntity(it.second) as? IPipeHolder) == null)
+                }
             }
-        } }.mapNotNull {
+        }.mapNotNull {
 //            if ((it.first == filterWorld.provider.dimension) && (it.second == filterPos)) {
 //                return@mapNotNull null
 //            }
