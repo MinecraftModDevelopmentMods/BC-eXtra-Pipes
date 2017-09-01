@@ -8,7 +8,16 @@ import net.minecraftforge.common.DimensionManager
 import java.util.*
 
 object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinition.IPipeLoader {
-    private val teleportingPipes = mutableListOf<Pair<Int, BlockPos>>()
+    private val teleportingPipes = mutableMapOf<UUID, MutableList<Pair<Int, BlockPos>>>()
+
+    private fun addTeleportingPipe(pipe: IPipe) {
+        this.addTeleportingPipe(pipe.holder.owner.id, pipe.holder.pipeWorld.provider.dimension, pipe.holder.pipePos)
+    }
+
+    private fun addTeleportingPipe(profile: UUID, dimension: Int, pos: BlockPos) {
+        val list = this.teleportingPipes.getOrPut(profile, { mutableListOf() })
+        list.add(Pair(dimension, pos))
+    }
 
     override fun createBehaviour(pipe: IPipe) =
         object : TeleportingPipeReceiverBehaviour(pipe) {
@@ -17,7 +26,8 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
             override fun onTick() {
                 if (!this.ticked) {
                     if (!this.pipe.holder.pipeWorld.isRemote) {
-                        teleportingPipes.add(Pair(this.pipe.holder.pipeWorld.provider.dimension, this.pipe.holder.pipePos))
+                        // teleportingPipes.add(Pair(this.pipe.holder.pipeWorld.provider.dimension, this.pipe.holder.pipePos))
+                        this@TeleportingPipeReceiverCreator.addTeleportingPipe(this.pipe)
                     }
                     this.ticked = true
                 }
@@ -33,7 +43,8 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
             override fun onTick() {
                 if (!this.ticked) {
                     if (!this.pipe.holder.pipeWorld.isRemote) {
-                        teleportingPipes.add(Pair(this.pipe.holder.pipeWorld.provider.dimension, this.pipe.holder.pipePos))
+                        // teleportingPipes.add(Pair(this.pipe.holder.pipeWorld.provider.dimension, this.pipe.holder.pipePos))
+                        this@TeleportingPipeReceiverCreator.addTeleportingPipe(this.pipe)
                     }
                     this.ticked = true
                 }
@@ -48,8 +59,8 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
         else this.elementAtOrNull(Random().nextInt(this.count()))
     }
 
-    fun findRandomPipe(/*filterWorld: World, filterPos: BlockPos, */colour: EnumDyeColor, forItems: Boolean) =
-        teleportingPipes.also {
+    fun findRandomPipe(/*filterWorld: World, filterPos: BlockPos, */profile: UUID, colour: EnumDyeColor, forItems: Boolean) =
+        teleportingPipes.getOrDefault(profile, mutableListOf()).also {
             it.removeIf {
                 !DimensionManager.isDimensionRegistered(it.first) || DimensionManager.getWorld(it.first).let { world ->
                     !world.isBlockLoaded(it.second) || ((world.getTileEntity(it.second) as? IPipeHolder) == null)

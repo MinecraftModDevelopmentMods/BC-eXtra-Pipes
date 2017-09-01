@@ -14,7 +14,7 @@ class TeleportingPipeSenderBehaviour : PipeBehaviour {
         @Suppress("unused")
         fun onReachCenter(ev: PipeEventItem.ReachCenter) {
             if (ev.holder.pipe.colour != null) {
-                val target = TeleportingPipeReceiverCreator.findRandomPipe(ev.holder.pipe.colour, true) ?: return
+                val target = TeleportingPipeReceiverCreator.findRandomPipe(ev.holder.owner.id, ev.holder.pipe.colour, true) ?: return
                 val targetFlow = (target.pipe.flow as? IFlowItems) ?: return
 
                 val stack = ev.stack.copy()
