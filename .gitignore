@@ -11,6 +11,5 @@ build
 
 # other
 eclipse
-./lib
-./run
-
+/run/
+/bc-lib/

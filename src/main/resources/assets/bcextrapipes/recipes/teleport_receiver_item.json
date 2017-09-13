@@ -1,0 +1,18 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "bcextrapipes.pipes",
+  "result": { "item": "bcextrapipes:teleport_receiver_item", "data": 0 },
+  "pattern": [
+    "php",
+    "rdr"
+  ],
+  "key": {
+    "d": { "item": "buildcrafttransport:pipe_diamond_item", "data": 0 },
+    "r": { "type": "forge:ore_dict", "ore": "dustRedstone" },
+    "p": { "type": "forge:ore_dict", "ore": "enderpearl" },
+    "h": { "item": "minecraft:hopper" }
+  },
+  "conditions": [
+    { "type": "minecraft:item_exists", "item": "buildcrafttransport:pipe_diamond_item" }
+  ]
+}

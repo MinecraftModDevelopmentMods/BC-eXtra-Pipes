@@ -18,25 +18,19 @@ object BCExtraPipes {
     lateinit var proxy: CommonProxy
     lateinit var logger: Logger
 
-//    val creativeTab = CreativeTabManager.createTab(MOD_NAME)
-
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         BCExtraPipes.logger = event.modLog
-        // BCExtraPipes.proxy.preInit(event)
-
-        BCExtraPipesRegistry.preInit()
+        BCExtraPipes.proxy.preInit(event)
     }
 
     @Mod.EventHandler
     fun init(e: FMLInitializationEvent) {
-        // BCExtraPipes.proxy.init(e)
+        BCExtraPipes.proxy.init(e)
     }
 
     @Mod.EventHandler
     fun postInit(e: FMLPostInitializationEvent) {
-        // BCExtraPipes.proxy.postInit(e)
-
-        BCExtraPipesRegistry.postInit()
+        BCExtraPipes.proxy.postInit(e)
     }
 }
