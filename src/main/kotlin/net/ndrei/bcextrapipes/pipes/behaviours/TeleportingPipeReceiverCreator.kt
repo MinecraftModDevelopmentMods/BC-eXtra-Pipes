@@ -67,7 +67,7 @@ object TeleportingPipeReceiverCreator : PipeDefinition.IPipeCreator, PipeDefinit
                 }
             }
         }.mapNotNull {
-//            if ((it.first == filterWorld.provider.dimension) && (it.second == filterPos)) {
+            //            if ((it.first == filterWorld.provider.dimension) && (it.second == filterPos)) {
 //                return@mapNotNull null
 //            }
 

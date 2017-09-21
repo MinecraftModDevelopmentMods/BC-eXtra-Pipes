@@ -15,10 +15,10 @@ import net.ndrei.bcextrapipes.pipes.behaviours.TeleportingPipeReceiverCreator
 import net.ndrei.bcextrapipes.pipes.behaviours.TeleportingPipeSenderCreator
 
 object BCExtraPipesRegistry {
-    private lateinit var itemSender : IItemPipe
-    private lateinit var fluidSender : IItemPipe
-    private lateinit var itemReceiver : IItemPipe
-    private lateinit var fluidReceiver : IItemPipe
+    private lateinit var itemSender: IItemPipe
+    private lateinit var fluidSender: IItemPipe
+    private lateinit var itemReceiver: IItemPipe
+    private lateinit var fluidReceiver: IItemPipe
 
     fun preInit() {
         TagManager.startBatch()
