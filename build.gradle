@@ -96,9 +96,10 @@ dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jre8:${project.kotlin_version}"
     compile "net.shadowfacts:Forgelin:${project.forgelin_version}"
 
-    compileOnly "com.mod-buildcraft:buildcraft-api:${project.bc_version}"
-    compileOnly "com.mod-buildcraft:buildcraft-lib:${project.bc_version}"
-    runtime "com.mod-buildcraft:buildcraft:${project.bc_version}"
+//    compileOnly "com.mod-buildcraft:buildcraft-api:${project.bc_version}"
+//    compileOnly "com.mod-buildcraft:buildcraft-lib:${project.bc_version}"
+//    runtime "com.mod-buildcraft:buildcraft:${project.bc_version}"
+    compile "com.mod-buildcraft:buildcraft:${project.bc_version}"
 }
 
 processResources {

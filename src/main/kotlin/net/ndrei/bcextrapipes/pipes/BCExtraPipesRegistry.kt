@@ -1,18 +1,12 @@
 package net.ndrei.bcextrapipes.pipes
 
-import buildcraft.api.transport.pipe.IItemPipe
 import buildcraft.api.transport.pipe.PipeApi
-import buildcraft.api.transport.pipe.PipeApiClient
 import buildcraft.api.transport.pipe.PipeDefinition
-import buildcraft.lib.registry.RegistryHelper
+import buildcraft.lib.registry.RegistryConfig
 import buildcraft.lib.registry.TagManager
 import buildcraft.transport.item.ItemPipeHolder
-import net.minecraft.init.Blocks
 import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
-import net.minecraftforge.event.RegistryEvent
-import net.minecraftforge.fml.common.registry.GameRegistry
-import net.minecraftforge.oredict.ShapedOreRecipe
 import net.minecraftforge.registries.IForgeRegistry
 import net.ndrei.bcextrapipes.MOD_ID
 import net.ndrei.bcextrapipes.pipes.behaviours.TeleportingPipeReceiverCreator
@@ -24,7 +18,6 @@ object BCExtraPipesRegistry {
 //    private lateinit var itemReceiver : IItemPipe
 //    private lateinit var fluidReceiver : IItemPipe
 
-
     fun preInit() {
         TagManager.startBatch()
         TagManager.registerTag("item.pipe.bcextrapipes.teleport_sender_item").reg("teleport_sender_item").locale("PipeTeleportSenderItem")
@@ -34,7 +27,7 @@ object BCExtraPipesRegistry {
         TagManager.endBatch(TagManager.prependTags("${MOD_ID}:", TagManager.EnumTagType.REGISTRY_NAME, TagManager.EnumTagType.MODEL_LOCATION)
             .andThen(TagManager.setTab("buildcraft.pipes")))
 
-        RegistryHelper.useOtherModConfigFor(MOD_ID, "buildcrafttransport")
+        RegistryConfig.useOtherModConfigFor(MOD_ID, "buildcrafttransport")
 
         val builderSenderItem = PipeDefinition.PipeDefinitionBuilder()
         builderSenderItem.flow(PipeApi.flowItems)
@@ -77,7 +70,8 @@ object BCExtraPipesRegistry {
     }
 
     fun registerModels() {
-        RegistryHelper.registerVariants(*this.pipeItems.toTypedArray())
+        this.pipeItems.forEach { it.registerVariants() }
+        // RegistryHelper.registerVariants(*this.pipeItems.toTypedArray())
     }
 
     fun postInit() {
