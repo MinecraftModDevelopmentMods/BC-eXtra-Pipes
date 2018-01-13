@@ -63,7 +63,7 @@ object BCExtraPipesRegistry {
 
     fun registerItems(registry: IForgeRegistry<Item>) {
         this.pipeDefinitions.mapTo(this.pipeItems) {
-            ItemPipeHolder(it).registerWithPipeApi().also {
+            ItemPipeHolder.createAndTag(it).registerWithPipeApi().also {
                 registry.register(it)
             }
         }
