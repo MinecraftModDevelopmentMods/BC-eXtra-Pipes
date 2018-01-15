@@ -13,11 +13,6 @@ import net.ndrei.bcextrapipes.pipes.behaviours.TeleportingPipeReceiverCreator
 import net.ndrei.bcextrapipes.pipes.behaviours.TeleportingPipeSenderCreator
 
 object BCExtraPipesRegistry {
-//    private lateinit var itemSender : IItemPipe
-//    private lateinit var fluidSender : IItemPipe
-//    private lateinit var itemReceiver : IItemPipe
-//    private lateinit var fluidReceiver : IItemPipe
-
     fun preInit() {
         TagManager.startBatch()
         TagManager.registerTag("item.pipe.bcextrapipes.teleport_sender_item").reg("teleport_sender_item").locale("PipeTeleportSenderItem")
@@ -71,34 +66,5 @@ object BCExtraPipesRegistry {
 
     fun registerModels() {
         this.pipeItems.forEach { it.registerVariants() }
-        // RegistryHelper.registerVariants(*this.pipeItems.toTypedArray())
-    }
-
-    fun postInit() {
-//        this.fluidSender.also {
-//            if (it is Item) {
-//                val pipe = Item.getByNameOrId("buildcrafttransport:pipe_diamond_fluid") ?: return
-//                GameRegistry.addRecipe(ShapedOreRecipe(it,
-//                    "ppp",
-//                    "rdr",
-//                    'p', "enderpearl",
-//                    'r', "dustRedstone",
-//                    'd', pipe
-//                ))
-//            }
-//        }
-//        this.fluidReceiver.also {
-//            if (it is Item) {
-//                val pipe = Item.getByNameOrId("buildcrafttransport:pipe_diamond_fluid") ?: return
-//                GameRegistry.addRecipe(ShapedOreRecipe(it,
-//                    "php",
-//                    "rdr",
-//                    'p', "enderpearl",
-//                    'h', Blocks.HOPPER,
-//                    'r', "dustRedstone",
-//                    'd', pipe
-//                ))
-//            }
-//        }
     }
 }

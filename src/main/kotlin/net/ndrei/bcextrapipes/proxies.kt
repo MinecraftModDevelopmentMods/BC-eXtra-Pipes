@@ -25,7 +25,6 @@ open class CommonProxy(val side: Side) {
     }
 
     open fun postInit(ev: FMLPostInitializationEvent) {
-        BCExtraPipesRegistry.postInit()
     }
 
     @SubscribeEvent

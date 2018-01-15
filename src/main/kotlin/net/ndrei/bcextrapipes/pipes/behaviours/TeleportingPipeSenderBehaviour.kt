@@ -60,7 +60,7 @@ class TeleportingPipeSenderBehaviour : PipeBehaviour {
     override fun onTick() {
         super.onTick()
 
-        if ((this.pipe.colour != null) && (this.pipe.holder != null) && (this.pipe.holder.owner != null)) {
+        if (!this.pipe.holder.pipeWorld.isRemote && (this.pipe.colour != null) && (this.pipe.holder != null) && (this.pipe.holder.owner != null)) {
             val target = TeleportingPipeReceiverCreator.findRandomPipe(this.pipe.holder.owner.id, this.pipe.colour, false) ?: return
             val targetFlow = (target.pipe.flow as? IFlowFluid) ?: return
 
