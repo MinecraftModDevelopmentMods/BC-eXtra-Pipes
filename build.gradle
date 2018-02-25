@@ -211,7 +211,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId project.group
             artifactId project.archivesBaseName
-            def versionForMaven = "$project.minecraft_version-$project.mod_version"
+            def versionForMaven = "$project.bc_version-$project.mod_version"
             if (System.getenv().BUILD_NUMBER) {
                 versionForMaven += '.' + System.getenv().BUILD_NUMBER
             }
@@ -252,7 +252,7 @@ curseforge {
             releaseType = project.cf_release_type
             addGameVersion(project.minecraft_version)
             def projectName = project.mod_name
-            def displayVersion = project.mod_version
+            def displayVersion = "${project.bc_version} - ${project.mod_version}"
             if (System.getenv().BUILD_NUMBER) {
                 displayVersion += '.' + System.getenv().BUILD_NUMBER
             }
@@ -260,7 +260,8 @@ curseforge {
                 displayName = "$project.mod_name : $displayVersion"
                 relations {
                     requiredLibrary 'shadowfacts-forgelin'
-// TODO: add relations ('requiredLibrary' || 'optionalLibrary')
+                    requiredLibrary 'buildcraft'
+                    // TODO: add relations ('requiredLibrary' || 'optionalLibrary')
                 }
             }
             addArtifact(sourceJar) {
