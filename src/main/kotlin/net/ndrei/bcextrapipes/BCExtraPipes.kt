@@ -5,7 +5,6 @@ import net.minecraftforge.fml.common.SidedProxy
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import net.ndrei.bcextrapipes.pipes.BCExtraPipesRegistry
 import org.apache.logging.log4j.Logger
 
 @Suppress("unused")
