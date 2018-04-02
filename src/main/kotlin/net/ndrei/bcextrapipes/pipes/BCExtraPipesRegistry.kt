@@ -18,8 +18,8 @@ object BCExtraPipesRegistry {
         TagManager.registerTag("item.pipe.bcextrapipes.teleport_sender_item").reg("teleport_sender_item").locale("PipeTeleportSenderItem")
         TagManager.registerTag("item.pipe.bcextrapipes.teleport_sender_fluid").reg("teleport_sender_fluid").locale("PipeTeleportSenderFluid")
         TagManager.registerTag("item.pipe.bcextrapipes.teleport_receiver_item").reg("teleport_receiver_item").locale("PipeTeleportReceiverItem")
-        TagManager.registerTag("item.pipe.bcextrapipes.teleport_receiver_fluid").reg("teleport_reciever_fluid").locale("PipeTeleportReceiverFluid")
-        TagManager.endBatch(TagManager.prependTags("${MOD_ID}:", TagManager.EnumTagType.REGISTRY_NAME, TagManager.EnumTagType.MODEL_LOCATION)
+        TagManager.registerTag("item.pipe.bcextrapipes.teleport_receiver_fluid").reg("teleport_receiver_fluid").locale("PipeTeleportReceiverFluid")
+        TagManager.endBatch(TagManager.prependTags("$MOD_ID:", TagManager.EnumTagType.REGISTRY_NAME, TagManager.EnumTagType.MODEL_LOCATION)
             .andThen(TagManager.setTab("buildcraft.pipes")))
 
         RegistryConfig.useOtherModConfigFor(MOD_ID, "buildcrafttransport")
