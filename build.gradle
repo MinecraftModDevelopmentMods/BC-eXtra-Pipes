@@ -149,33 +149,17 @@ processResources {
 }
 
 jar {
-    from sourceSets.api.output
     from sourceSets.main.output
 }
 
 task sourcesJar(type: Jar) {
-    from sourceSets.api.allSource
     from sourceSets.main.allSource
     classifier = 'sources'
 }
 
 task deobfJar(type: Jar) {
-    from sourceSets.api.output
     from sourceSets.main.output
     classifier = 'deobf'
-}
-
-task apiJar(type: Jar) {
-    from sourceSets.api.output
-    classifier = 'api'
-}
-
-task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = "javadoc"
-    kotlinTasks {
-        [':compileApiKotlin']
-    }
-    outputDirectory = "$buildDir/dokkaJavadoc"
 }
 
 task signJar(type: SignJar, dependsOn: reobfJar) {
@@ -197,13 +181,8 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 
 build.dependsOn signJar
 
-task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
-    classifier = 'javadoc'
-    from dokkaJavadoc.outputDirectory
-}
-
 artifacts {
-    archives apiJar, sourceJar, deobfJar, javadocJar
+    archives sourceJar, deobfJar
 }
 
 publishing {
@@ -222,12 +201,6 @@ publishing {
             }
             artifact deobfJar {
                 classifier 'deobf'
-            }
-            artifact javadocJar {
-                classifier 'javadoc'
-            }
-            artifact apiJar {
-                classifier 'api'
             }
         }
     }
@@ -269,12 +242,6 @@ curseforge {
             }
             addArtifact(deobfJar) {
                 displayName = "$project.mod_name : $displayVersion : Development"
-            }
-            addArtifact(apiJar) {
-                displayName = "$project.mod_name : $displayVersion : API"
-            }
-            addArtifact(javadocJar) {
-                displayName = "$project.mod_name : $displayVersion : API Javadoc"
             }
         }
     }
