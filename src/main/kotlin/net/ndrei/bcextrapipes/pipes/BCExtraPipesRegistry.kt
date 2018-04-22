@@ -25,6 +25,7 @@ object BCExtraPipesRegistry {
         RegistryConfig.useOtherModConfigFor(MOD_ID, "buildcrafttransport")
 
         val builderSenderItem = PipeDefinition.PipeDefinitionBuilder()
+        builderSenderItem.canBeColoured = true
         builderSenderItem.flow(PipeApi.flowItems)
         builderSenderItem.identifier = ResourceLocation(MOD_ID, "teleport_sender_item")
         builderSenderItem.texPrefix("teleport_sender_item")
@@ -32,6 +33,7 @@ object BCExtraPipesRegistry {
         PipeApi.pipeRegistry.registerPipe(builderSenderItem.define().also { this.pipeDefinitions.add(it) })
 
         val builderSenderFluid = PipeDefinition.PipeDefinitionBuilder()
+        builderSenderFluid.canBeColoured = true
         builderSenderFluid.flow(PipeApi.flowFluids)
         builderSenderFluid.identifier = ResourceLocation(MOD_ID, "teleport_sender_fluid")
         builderSenderFluid.texPrefix("teleport_sender_fluid")
@@ -39,6 +41,7 @@ object BCExtraPipesRegistry {
         PipeApi.pipeRegistry.registerPipe(builderSenderFluid.define().also { this.pipeDefinitions.add(it) })
 
         val builderReceiverItem = PipeDefinition.PipeDefinitionBuilder()
+        builderReceiverItem.canBeColoured = true
         builderReceiverItem.flow(PipeApi.flowItems)
         builderReceiverItem.identifier = ResourceLocation(MOD_ID, "teleport_receiver_item")
         builderReceiverItem.texPrefix("teleport_receiver_item")
@@ -46,6 +49,7 @@ object BCExtraPipesRegistry {
         PipeApi.pipeRegistry.registerPipe(builderReceiverItem.define().also { this.pipeDefinitions.add(it) })
 
         val builderReceiverFluid = PipeDefinition.PipeDefinitionBuilder()
+        builderReceiverFluid.canBeColoured = true
         builderReceiverFluid.flow(PipeApi.flowFluids)
         builderReceiverFluid.identifier = ResourceLocation(MOD_ID, "teleport_receiver_fluid")
         builderReceiverFluid.texPrefix("teleport_receiver_fluid")
